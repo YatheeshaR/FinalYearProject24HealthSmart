@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %}
+{% block content %}
+<title>HealthSmart</title>
+</head>
+<body>
+ <div class="container">
+     <div class="row">
+       <div class="col-md-12 text-center">
+         <h3 class="text"> BMHealth</h3>
+
+       </div>
+     </div>
+ </div>
+ <div>
+     <h1>Calculator</h1>
+
+
+         <label>Your BMI:</label>
+         <input type="text" id="bmi" value="{{BMI}}">
+         <br>
+         <label>Your BMR:</label>
+         <input type="text" id="bmr" value="{{BMR}}">
+         <br>
+
+ </div>
+</body>
+{% endblock %}

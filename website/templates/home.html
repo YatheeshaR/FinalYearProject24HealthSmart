@@ -1,0 +1,78 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="text">HealthSmart</h3>
+        </div>
+    </div>
+</div>
+<div class="slider-thumb"></div>
+<div class="container">
+    <form id="upload-form" enctype="multipart/form-data">
+        <div class="wrapper">
+            <div class="image">
+                <!-- Placeholder for uploaded image -->
+                <img id="uploaded-image" src="" alt="">
+            </div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                    No file chosen, yet!
+                </div>
+            </div>
+            <div id="cancel-btn">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="file-name">
+                File name here
+            </div>
+        </div>
+        <input type="file" id="file"/>
+        <button type="button" id="custom-btn">Upload</button> 
+    </form>
+</div>
+<div class="container">
+  
+</div>
+<script>
+    const wrapper = document.querySelector(".wrapper");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#file");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("#uploaded-image"); // corrected selector
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+    
+    function defaultBtnActive(){
+        defaultBtn.click();
+    }
+    
+    defaultBtn.addEventListener("change", function(){
+        const file = this.files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onload = function(){
+                const result = reader.result;
+                img.src = result;
+                wrapper.classList.add("active");
+            }
+            cancelBtn.addEventListener("click", function(){
+                img.src = "";
+                wrapper.classList.remove("active");
+            })
+            reader.readAsDataURL(file);
+        }
+        if(this.value){
+            let valueStore = this.value.match(regExp);
+            fileName.textContent = valueStore;
+        }
+
+
+    
+    });
+
+</script>
+{% endblock %}

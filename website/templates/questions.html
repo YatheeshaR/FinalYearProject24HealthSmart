@@ -1,0 +1,77 @@
+<!-- {% extends "base.html" %} {% block title %}Questions{% endblock %} {% block content%} -->
+
+<form id ='questions-container' #action="{{ url_for('views.answer_questions') }}" method="POST">
+    <p>Question 1:How often do you engage in exercise or sports?</p>
+    <input type="radio" name="q1_answer" value="1"> Rarely or never<br>
+    <input type="radio" name="q1_answer" value="2"> 1-2 days a week<br>
+    <input type="radio" name="q1_answer" value="3"> 3-4 days a week<br>
+    <input type="radio" name="q1_answer" value="4"> 5-6 days a week<br>
+    <input type="radio" name="q1_answer" value="5">Every day<br>
+
+    <p>Question 2: How intense is your exercise or sports routine?    </p>
+    <input type="radio" name="q2_answer" value="1"> Very light or none    <br>
+    <input type="radio" name="q2_answer" value="2"> Light, such as walking or yoga<br>
+    <input type="radio" name="q2_answer" value="3"> Moderate, such as jogging or cycling<br>
+    <input type="radio" name="q2_answer" value="4"> Intense, such as running or weightlifting<br>
+    <input type="radio" name="q2_answer" value="5"> Very intense, such as high-intensity interval training or competitive sports<br>
+
+    <p>Question 3: How long do you spend on physical activity each session?</p>
+    <input type="radio" name="q3_answer" value="1">  Less than 15 minutes<br>
+    <input type="radio" name="q3_answer" value="2"> 15-30 minutes<br>
+    <input type="radio" name="q3_answer" value="3"> 30-45 minutes<br>
+    <input type="radio" name="q3_answer" value="4"> 45-60 minutes<br>
+    <input type="radio" name="q3_answer" value="5"> More than 60 minutes<br>
+
+    <p>Question 4: Do you engage in physical activities during your leisure time?</p>
+    <input type="radio" name="q4_answer" value="1"> Never<br>
+    <input type="radio" name="q4_answer" value="2"> Rarely<br>
+    <input type="radio" name="q4_answer" value="3"> Occasionally<br>
+    <input type="radio" name="q4_answer" value="4"> Frequently<br>
+    <input type="radio" name="q4_answer" value="5"> Always<br>
+    
+    <p>Question 5: How physically demanding is your job or daily activities?</p>
+    <input type="radio" name="q5_answer" value="1"> Sedentary (desk job, little movement)<br>
+    <input type="radio" name="q5_answer" value="2"> Light activity (some movement, occasional standing)<br>
+    <input type="radio" name="q5_answer" value="3"> Moderately active (moving frequently, walking)<br>
+    <input type="radio" name="q5_answer" value="4"> Very active (physical labor, active job)<br>
+    <input type="radio" name="q5_answer" value="5"> Extremely active (intense physical labor, strenuous job)<br>
+
+    <p>Question 6: On average, how many hours per day do you spend sitting?</p>
+    <input type="radio" name="q6_answer" value="1"> More than 8 hours<br>
+    <input type="radio" name="q6_answer" value="2"> 6-8 hours<br>
+    <input type="radio" name="q6_answer" value="3"> 4-6 hours<br>
+    <input type="radio" name="q6_answer" value="4">  2-4 hours<br>
+    <input type="radio" name="q6_answer" value="5"> Less than 2 hours<br>
+
+    <p>Question 7: How often do you participate in cardiovascular exercises?</p>
+    <input type="radio" name="q7_answer" value="1"> Never<br>
+    <input type="radio" name="q7_answer" value="2"> Rarely (once a week)<br>
+    <input type="radio" name="q7_answer" value="3"> Sometimes (2-3 times a week)<br>
+    <input type="radio" name="q7_answer" value="4"> Often (4-5 times a week)<br>
+    <input type="radio" name="q7_answer" value="5"> Daily<br>
+
+    <p>Question 8: What type of physical activities do you enjoy the most? </p>
+    <input type="radio" name="q8_answer" value="1"> None<br>
+    <input type="radio" name="q8_answer" value="2"> Walking or jogging<br>
+    <input type="radio" name="q8_answer" value="3"> Swimming or cycling<br>
+    <input type="radio" name="q8_answer" value="4"> Team sports or gym workouts<br>
+    <input type="radio" name="q8_answer" value="5"> High-intensity workouts or martial arts<br>
+
+    <p>Question 9: How would you rate your overall physical fitness level?</p>
+    <input type="radio" name="q9_answer" value="1"> Poor<br>
+    <input type="radio" name="q9_answer" value="2"> Below average<br>
+    <input type="radio" name="q9_answer" value="3"> Average<br>
+    <input type="radio" name="q9_answer" value="4">Above average<br>
+    <input type="radio" name="q9_answer" value="5"> Excellent<br>
+
+    <p>Question 10: How much time do you spend standing or walking during a typical workday?</p>
+    <input type="radio" name="q10_answer" value="1"> Less than 1 hour<br>
+    <input type="radio" name="q10_answer" value="2"> 1-2 hours<br>
+    <input type="radio" name="q10_answer" value="3"> 2-4 hours<br>
+    <input type="radio" name="q10_answer" value="4"> 4-6 hours<br>
+    <input type="radio" name="q10_answer" value="5"> More than 6 hours<br>
+    
+    <!-- Add more questions here -->
+    <button type="submit">Submit</button>
+</form>
+<!-- {% endblock %} -->
