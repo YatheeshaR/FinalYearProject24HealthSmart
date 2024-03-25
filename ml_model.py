@@ -1,11 +1,10 @@
 import cv2
 from mtcnn.mtcnn import MTCNN
-from tensorflow.keras.preprocessing import image
+import tensorflow as tf
 import numpy as np
 from matplotlib import pyplot as plt
-import tensorflow
 from keras import backend as K
-
+import pymysql
 
 
 def crop_img(im, x, y, w, h):
@@ -64,9 +63,9 @@ class Asset:
     HeightWeight_model_name = "./models/height_weight_models.tflite"
 
     # constructor
-    def __init__(self, test_dir, test_processed_dir, AgeGender_model_name, HeightWeight_model_name):
+    def __init__(self,test_dir, test_processed_dir, AgeGender_model_name, HeightWeight_model_name):   
         self.test_dir = test_dir
-        self.test_processed_dir = test_processed_dir
+        self.test_processed_dir = test_processed_dir 
         self.AgeGender_model_name = AgeGender_model_name
         self.HeightWeight_model_name = HeightWeight_model_name
 
@@ -85,35 +84,32 @@ class Asset:
         im = plt.imread(self.test_dir)
         # detect ,crop ,save image
         plt.imsave(self.test_processed_dir, crop_img(im, *box['box']))
-
+    
     # convert single image to array
     def img2arr(self, img_path, version=1):
-        img = image.load_img(img_path)
-        img = image.img_to_array(img)
+        img = tf.keras.preprocessing.image.load_img(img_path)
+        img = tf.keras.preprocessing.image.img_to_array(img)
         # normalizing image to be entered to the custom VGG16 model
         img = process_arr(img, version)
         return img
 
-    # load and return BMI tensorflow elite model
-    # def load_model_BMI(self):
-    #     BMI_interpreter_fp16 = tensorflow.lite.Interpreter(model_path=self.BMI_model_name)
-    #     BMI_interpreter_fp16.allocate_tensors()
-    #     print("BMI loaded")
-    #     return BMI_interpreter_fp16
+  
 
     # load and return Age and Gender tensorflow elite model
     def load_model_AgeGender(self):
-        AgeGender_interpreter_fp16 = tensorflow.lite.Interpreter(model_path=self.AgeGender_model_name)
+        AgeGender_interpreter_fp16 = tf.lite.Interpreter(model_path=self.AgeGender_model_name)
         AgeGender_interpreter_fp16.allocate_tensors()
         print("age gender loaded")
         return AgeGender_interpreter_fp16
 
     # load and return Height and Weight tensorflow elite model
     def load_model_HeightWeight(self):
-        HeightWeight_interpreter_fp16 = tensorflow.lite.Interpreter(model_path=self.HeightWeight_model_name)
+        HeightWeight_interpreter_fp16 = tf.lite.Interpreter(model_path=self.HeightWeight_model_name)
         HeightWeight_interpreter_fp16.allocate_tensors()
         print("height weight loaded")
         return HeightWeight_interpreter_fp16
+
+   
 
     # make predictions from the loaded tensorflow elite model
     def make_AgeGender_predictions(self, arr):
@@ -161,14 +157,18 @@ class Asset:
     def inchesToCm(self, inches):
         return inches * 2.54
 
-    # calculate BMR
-    def AGHWToBMR(self, age, gender, height, weight):
+    
+       # calculate calorie deficit
+    def CalorieDefict(self, age, gender, height, weight,active_score):
         height = self.inchesToCm(height)
         weight = self.poundsToKG(weight)
         if gender > 0.6:
             BMR = (10 * weight) + (6.25 * height) - (5 * int(age)) + 5
         else:
             BMR = (10 * weight) + (6.25 * height) - (5 * int(age)) - 161
+        
+        CalorieDef=BMR *active_score -1000
 
-        return BMR
+        return CalorieDef
 
+  
